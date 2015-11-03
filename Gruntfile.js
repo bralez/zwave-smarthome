@@ -71,6 +71,7 @@ module.exports = function(grunt) {
                     'app/controllers/room.js',
                     'app/controllers/management.js',
                     'app/controllers/mysettings.js',
+                    'app/controllers/skin.js',
                     'app/controllers/report.js',
                     'app/controllers/info.js',
                     'app/controllers/auth.js',

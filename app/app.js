@@ -208,6 +208,21 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/expertui/configuration.html',
                     requireLogin: true
                 }).
+                //Online skins
+                when('/skins/online', {
+                    templateUrl: 'app/views/skins/online.html',
+                    requireLogin: true
+                }).
+                //Online skin ID
+                when('/skins/online/:id', {
+                    templateUrl: 'app/views/skins/online_id.html',
+                    requireLogin: true
+                }).
+                //Local skins
+                when('/skins/local', {
+                    templateUrl: 'app/views/skins/local.html',
+                    requireLogin: true
+                }).
                 //Report
                 when('/report', {
                     templateUrl: 'app/views/report/report.html',

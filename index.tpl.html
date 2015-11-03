@@ -62,6 +62,10 @@
                         <li class="subnavi-admin" ng-class="isActive('admin')" ng-if="elementAccess(cfg.role_access.admin)">
                             <a href="#admin"><i class="fa fa-wrench"></i> {{_t('management')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
                         </li>
+                        <!-- Skins  -->
+                        <li class="subnavi-report" ng-class="isActive('skins')">
+                            <a href="#skins/local"><i class="fa fa-puzzle-piece"></i> {{_t('skins')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>
+                        </li>
                         <!-- Report -->
                         <li class="subnavi-report" ng-class="isActive('report')">
                             <a href="#report"><i class="fa fa-bug"></i> {{_t('nav_report')}} <i class="fa fa-chevron-right subnavi-arrow"></i></a>

@@ -17,7 +17,7 @@ var config_data = {
             'hide_devices': 'ZAutomation/api/v1/hidedevices',
             'profiles': 'ZAutomation/api/v1/profiles',
             'profiles_auth_update': 'ZAutomation/api/v1/auth/update',
-            'locations': 'ZAutomation/api/v1/locations',
+            'locations': 'ZAutomation/api/v1/locations_',
             'notifications': 'ZAutomation/api/v1/notifications',
             'modules': 'ZAutomation/api/v1/modules',
             'modules_categories': 'ZAutomation/api/v1/modules/categories',

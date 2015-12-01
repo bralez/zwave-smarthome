@@ -12,8 +12,9 @@ var myApp = angular.module('myApp', [
     'myAppFactory',
     'myAppService',
     'colorpicker.module',
-    'dndLists'
-    //'angularFileUpload'
+    'dndLists',
+    'qAllSettled'
+            //'angularFileUpload'
 
 ]);
 
@@ -26,9 +27,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     //redirectTo: '/elements/dashboard/1'
                     templateUrl: 'app/views/login/login.html'
                 }).
-                 // Home
+                // Home
                 when('/home', {
-                   redirectTo: '/elements/dashboard/1'
+                    redirectTo: '/elements/dashboard/1'
                 }).
                 // Elements
                 when('/elements/:filter?/:val?/:name?', {
@@ -41,7 +42,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.element
                 }).
-                 // Element - drag & drop
+                // Element - drag & drop
                 when('/dragdrop', {
                     templateUrl: 'app/views/elements/dragdrop.html',
                     requireLogin: true,
@@ -56,7 +57,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 // Events
                 when('/events/:param?/:val?', {
                     templateUrl: 'app/views/events/events.html',
-                     requireLogin: true
+                    requireLogin: true
                 }).
                 //Admin
                 when('/admin', {
@@ -77,14 +78,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     roles: cfg.role_access.myaccess
                 }).
                 //Apps
-                when('/apps', { 
+                when('/apps', {
                     templateUrl: 'app/views/apps/apps.html',
-                     requireLogin: true,
+                    requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
-                 when('/apps/category/:category', { 
+                when('/apps/category/:category', {
                     templateUrl: 'app/views/apps/apps.html',
-                     requireLogin: true,
+                    requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
                 //Apps - local detail
@@ -97,7 +98,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 when('/apps/online/:id', {
                     templateUrl: 'app/views/apps/app_online_detail.html',
                     requireLogin: true,
-                   roles: cfg.role_access.apps_online
+                    roles: cfg.role_access.apps_online
                 }).
                 //Module
                 when('/module/:action/:id', {
@@ -221,7 +222,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 //Login
                 when('/login', {
                     redirectTo: '/'
-                    //templateUrl: 'app/views/login/login.html',
+                            //templateUrl: 'app/views/login/login.html',
                 }).
                 //Login
                 when('/logout', {
@@ -283,10 +284,10 @@ myApp.run(function($rootScope, $location, dataService) {
 
 // Intercepting HTTP calls with AngularJS.
 myApp.config(function($provide, $httpProvider) {
-    $httpProvider.defaults.timeout = 5000; 
+    $httpProvider.defaults.timeout = 5000;
     // Intercept http calls.
-    $provide.factory('MyHttpInterceptor', function($q,$location,dataService) {
-         var path = $location.path().split('/');
+    $provide.factory('MyHttpInterceptor', function($q, $location, dataService) {
+        var path = $location.path().split('/');
         return {
             // On request success
             request: function(config) {
@@ -306,21 +307,21 @@ myApp.config(function($provide, $httpProvider) {
             // On response failture
             responseError: function(rejection) {
                 dataService.logError(rejection);
-               if(rejection.status == 401){
-                   if(path[1] !== ''){
+                if (rejection.status == 401) {
+                    if (path[1] !== '') {
                         dataService.logOut();
-                   }
-                   return $q.reject(rejection);
-                    
-                }else if(rejection.status == 403){
+                    }
+                    return $q.reject(rejection);
+
+                } else if (rejection.status == 403) {
                     $location.path('/error/403');
                     return $q.reject(rejection);
-                }else{
+                } else {
                     // Return the promise rejection.
                     return $q.reject(rejection);
                 }
                 //
-                
+
             }
         };
     });
@@ -328,6 +329,7 @@ myApp.config(function($provide, $httpProvider) {
     // Add the interceptor to the $httpProvider.
     $httpProvider.interceptors.push('MyHttpInterceptor');
 
+   
 });
 
 

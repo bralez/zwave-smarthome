@@ -2,5 +2,42 @@
 <div ng-controller="TestController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-controller="TestChildController"></div>
-    
+    <!-- RGB selector -->
+    <h1>RGB test</h1>
+
+    <div ng-controller="ElementRgbModalController">
+        <strong ng-click="loadRgbWheel('#modal_rgb_wheel', 'RGB_47')">{{_t('lb_settings')}}</strong>
+
+    </div>
+
+    <!-- Modal door lock -->
+    <div class="modal modal-vertical-centered fade" id="modal_rgb_wheel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" ng-bind="input.title"></h4>
+                </div>
+                <div class="modal-body ">
+
+                    <div class="row wheel-colorpicker">
+                        <div class="col-rgb col-sm-6">
+                            <canvas id="wheel_picker" var="4" width="300" height="300" ng-mousemove="setColor($element)"></canvas>
+                            <input type="hidden" id="rgbVal" />
+                        </div>
+                        <div class="col-rgb col-sm-6">
+                            <div id="wheel_picker_preview">&nbsp;</div>
+                            <p><input class="form-control" type="text" id="rVal" disabled /></p>
+                            <p><input class="form-control" type="text" id="gVal" disabled /></p>
+                            <p><input class="form-control" type="text" id="bVal" disabled /></p>
+                        </div>
+                        <!-- preview element -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.Modal multiline -->
+
 </div>

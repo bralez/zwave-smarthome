@@ -14,7 +14,6 @@ var myApp = angular.module('myApp', [
     'colorpicker.module',
     'dndLists',
     'qAllSettled'
-            //'angularFileUpload'
 
 ]);
 
@@ -24,8 +23,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
                 // Login
                 when('/', {
-                    //redirectTo: '/elements/dashboard/1'
-                    templateUrl: 'app/views/login/login.html'
+                   templateUrl: 'app/views/auth/login.html'
                 }).
                 // Home
                 when('/home', {
@@ -67,7 +65,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 }).
                 //Admin detail
                 when('/admin/user/:id', {
-                    templateUrl: 'app/views/management/management_user.html',
+                    templateUrl: 'app/views/management/management_user_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.admin_user
                 }).
@@ -83,20 +81,38 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
-                when('/apps/category/:category', {
+                //Apps local
+                when('/apps/local', { 
+                    templateUrl: 'app/views/apps/apps_local.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
+                 when('/apps/category/:category', { 
                     templateUrl: 'app/views/apps/apps.html',
                     requireLogin: true,
                     roles: cfg.role_access.apps
                 }).
                 //Apps - local detail
                 when('/apps/local/:id', {
-                    templateUrl: 'app/views/apps/app_local_detail.html',
+                    templateUrl: 'app/views/apps/apps_local_id.html',
                     requireLogin: true,
                     roles: cfg.role_access.apps_local
                 }).
+                //Apps online
+                when('/apps/online', { 
+                    templateUrl: 'app/views/apps/apps_online.html',
+                     requireLogin: true,
+                    roles: cfg.role_access.apps
+                }).
                 //Apps - online detail
                 when('/apps/online/:id', {
-                    templateUrl: 'app/views/apps/app_online_detail.html',
+                    templateUrl: 'app/views/apps/apps_online_id.html',
+                    requireLogin: true,
+                   roles: cfg.role_access.apps_online
+                }).
+                //Apps -instance
+                when('/apps/instance', {
+                    templateUrl: 'app/views/apps/apps_instance.html',
                     requireLogin: true,
                     roles: cfg.role_access.apps_online
                 }).
@@ -121,6 +137,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
                 //Include Zwave device
                 when('/zwave/include/:device?', {
                     templateUrl: 'app/views/zwave/zwave_include.html',
+                    requireLogin: true,
+                    roles: cfg.role_access.devices_include
+                }).
+                //Include Zwave device
+                when('/zwave/exclude/:id', {
+                    templateUrl: 'app/views/zwave/zwave_exclude.html',
                     requireLogin: true,
                     roles: cfg.role_access.devices_include
                 }).
@@ -214,19 +236,27 @@ myApp.config(['$routeProvider', function($routeProvider) {
                     templateUrl: 'app/views/report/report.html',
                     requireLogin: true
                 }).
-                //Info
-                when('/info', {
-                    templateUrl: 'app/views/info/info.html',
-                    requireLogin: true
-                }).
                 //Login
                 when('/login', {
                     redirectTo: '/'
                             //templateUrl: 'app/views/login/login.html',
                 }).
+                //Password
+                when('/password', {
+                    templateUrl: 'app/views/auth/password.html',
+                    requireLogin: true
+                }).
+                //Password forgot
+                when('/passwordforgot', {
+                    templateUrl: 'app/views/auth/password_forgot.html'
+                }).
+                //Password reset
+                when('/passwordforgot/reset/:token', {
+                    templateUrl: 'app/views/auth/password_reset.html'
+                }).
                 //Login
                 when('/logout', {
-                    templateUrl: 'app/views/login/logout.html',
+                    templateUrl: 'app/views/auth/logout.html',
                     requireLogin: true
                 }).
                 // Error page
@@ -264,6 +294,7 @@ angular.forEach(config_data, function(key, value) {
  * Route Access Control and Authentication
  */
 myApp.run(function($rootScope, $location, dataService) {
+    $rootScope._ = _;
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
         var user;
         if (next.requireLogin) {

@@ -13,7 +13,8 @@ var myApp = angular.module('myApp', [
     'myAppService',
     //'colorpicker.module',
     'dndLists',
-    'qAllSettled'
+    'qAllSettled',
+    'myAppTemplates'
 
 ]);
 

@@ -2,6 +2,7 @@
 <div ng-controller="TestController" class="mobile-padding">
     <bb-loader></bb-loader>
     <div ng-controller="TestChildController"></div>
+     <div ng-include="'app/views/_test/include.html'"></div>
     <!-- RGB selector -->
     <h1>RGB test</h1>
 
@@ -9,6 +10,7 @@
         <strong ng-click="loadRgbWheel('#modal_rgb_wheel', 'RGB_47')">{{_t('lb_settings')}}</strong>
 
     </div>
+    <div ng-include="'app/views/_test/include.html'"></div>
 
     <!-- Modal door lock -->
     <div class="modal modal-vertical-centered fade" id="modal_rgb_wheel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

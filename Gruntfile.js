@@ -81,8 +81,7 @@ module.exports = function(grunt) {
                     'app/controllers/mysettings.js',
                     'app/controllers/auth.js',
                     //'app/modules/bootstrap-colorpicker-module.min.js',
-                    'app/modules/bootstrap-colorpicker-module.js',
-                    'app/modules/qAllSettled.js',
+                    //'app/modules/bootstrap-colorpicker-module.js',
                     // ExpertUI configuration js
                     'app/expertui/pyzw.js',
                     'app/expertui/pyzw_zwave_ui.js',

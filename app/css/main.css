@@ -4194,6 +4194,11 @@ img.widget-promo-image {
   border-radius: 4px;
   margin: 0 0 20px 0;
   height: 40px;
+  line-height: 35px;
+}
+/* line 457, sass/modules/_elements.scss */
+.wheel-colorpicker #wheel_picker_preview #wheel_picker_preview_spin {
+  background-color: #fff;
 }
 
 /* Events

@@ -102,7 +102,7 @@ module.exports = function(grunt) {
                             '!app/views/_test/**',
                             'app/img/**',
                            'app/img/**',
-                            'app/views/**',
+                            //'app/views/**',
                             'app/lang/**'
                         ], dest: 'dist/'
                     },
@@ -164,18 +164,21 @@ module.exports = function(grunt) {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files: {
-                  'dist/abc.html': 'index.html'
-                }
-            },
-            multiple: {
                 files: [{
                     expand: true,
                     cwd: 'app/views',
                     src: '**/*.html',
-                    dest: 'dist/views'
+                    dest: 'dist/app/views'
                 }]
             }
+//            multiple: {
+//                files: [{
+//                    expand: true,
+//                    cwd: 'app/views',
+//                    src: '**/*.html',
+//                    dest: 'dist/views'
+//                }]
+//            }
         },
         
         sass: {
@@ -189,6 +192,13 @@ module.exports = function(grunt) {
                 }
             }
         },
+        
+        ngtemplates:  {
+            app:        {
+              src:      'app/views/**/*.html',
+              dest:     'app/templates.js'
+            }
+          },
         
         watch: {
             files: "app/css/sass/**",
@@ -234,8 +244,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-remove');
+    grunt.loadNpmTasks('grunt-angular-templates');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean','concat','copy','cssmin']);
+    grunt.registerTask('default', ['clean','concat','copy','cssmin','htmlmin']);
 
 };
